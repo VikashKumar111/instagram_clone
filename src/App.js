@@ -15,7 +15,12 @@ function App() {
       </div>
 
       <h1>Hello clever programmers lets build an instagram clone using react</h1>
+      <Post />
+      <Post />
+      <Post />
       <Post/>
+      
+
 
     </div>
   );
