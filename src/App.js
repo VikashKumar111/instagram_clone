@@ -30,6 +30,16 @@ function App() {
   const [password, setPassword] = useState('');
   
   useEffect(() => {
+    auth.onAuthStateChanged((authuser) => {
+      if (authuser) {
+
+      } else {
+        
+      }
+    })
+  }, []);
+  
+  useEffect(() => {
     db.collection('posts').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id, post: doc.data()
