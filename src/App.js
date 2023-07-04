@@ -36,16 +36,8 @@ function App() {
           // user has logged in
         console.log(authUser);
         setUser(authUser);
-
-        if (authUser.displayName) {
-          //dont update username
-        } else {
-          // if we have just created
-          return authUser.updateProfile({
-            displayName: username,
-          });
         }
-      } else {
+       else {
           //  user has logged out
         setUser(null);
       }
@@ -68,6 +60,11 @@ function App() {
   const signUp = (event) => {
     event.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          displayName:username
+        })
+    })
     .catch((error) =>alert(error.message))
   }
 
