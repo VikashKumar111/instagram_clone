@@ -2,10 +2,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Post from './Post';
-import { db } from './firebase';
+import { auth, db } from './firebase';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Input } from '@mui/material';
 
@@ -40,7 +39,9 @@ function App() {
   } , [])
   
   const signUp = (event) => {
-    
+    event.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password)
+    .catch((error) =>alert(error.message))
   }
 
   return (
@@ -51,6 +52,7 @@ function App() {
         onClose={() => setOpen(false)}
       >
         <Box sx={style}>
+          <form className='app__signup'>
           <center>
             <img
                 className="app__headerImage"
@@ -80,9 +82,9 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button onClick={signUp}>Sign Up</Button>
+            <Button type='submit' onClick={signUp}>Sign Up</Button>
             
-          
+          </form>
         </Box>
       </Modal>
 

@@ -14,3 +14,9 @@ background-color: #fafafa;
  padding: 20px;
  border: 1px solid lightgray;
 }
+
+.app__signup{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
