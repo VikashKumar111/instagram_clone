@@ -24,7 +24,7 @@ const ImageUpload = ({username}) => {
                 const progress = Math.round(
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-                setProgress(progress);  
+                setProgress(progress);
             },
             (error) => {
                 //  error message
@@ -44,13 +44,16 @@ const ImageUpload = ({username}) => {
                             imageUrl: url,
                             username: username
 
-                        })
-                    })
+                        });
+                        setProgress(0);
+                        setCaption("");
+                        setImage(null);
+                    });
             }
             
             
 
-        )
+        );
         
     };
 
@@ -60,6 +63,8 @@ const ImageUpload = ({username}) => {
           {/*caption input*/}
           {/* file picker */}
           {/* post button */}
+
+          <progress value={progress} max= "100"/>
           <input type='text' placeholder='Enter a caption....' onChange={event => setCaption(event.target.value)}  value={caption}/>
           <input type='file' onChange={handleChange} />
           <Button onClick={handleUpload}>Upload</Button>
