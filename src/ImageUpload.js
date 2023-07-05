@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { storage , db } from './firebase';
+import { storage, db } from './firebase';
+import firebase from 'firebase/compat/app';
 
-const ImageUpload = () => {
+const ImageUpload = ({username}) => {
     const [caption, setCaption] = useState('');
     const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);
@@ -30,6 +31,22 @@ const ImageUpload = () => {
                 console.log(error);
                 alert(error.message);
             },
+            () => {
+                //complete function
+                storage.ref("images")
+                    .child(image.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        // post the image inside the db
+                        db.collections("posts").add({
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            caption: caption,
+                            imageUrl: url,
+                            username: username
+
+                        })
+                    })
+            }
             
             
 
