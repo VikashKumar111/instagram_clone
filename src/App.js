@@ -25,6 +25,7 @@ const style = {
 function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openLogIn, setOpenLogIn] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -65,9 +66,18 @@ function App() {
           displayName:username
         })
     })
-    .catch((error) =>alert(error.message))
+      .catch((error) => alert(error.message))
+    
+    setOpen(false);
   }
-
+  
+  const logIn = (event) => {
+    event.preventDefault();
+    auth.signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message))
+    
+    setOpenLogIn(false);
+  }
   return (
     <div className="app">
       
@@ -112,6 +122,44 @@ function App() {
         </Box>
       </Modal>
 
+
+      <Modal
+        open={openLogIn}
+        onClose={() => setOpenLogIn(false)}
+      >
+        <Box sx={style}>
+          <form className='app__signup'>
+          <center>
+            <img
+                className="app__headerImage"
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                alt=""
+            />
+          </center>
+          
+            <Input
+              type="text"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <Input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <Button type='submit' onClick={logIn}>Login</Button>
+            
+          </form>
+        </Box>
+      </Modal>
+
+
+
+
       <div className="app__header">
         <img
                 className="app__headerImage"
@@ -120,7 +168,17 @@ function App() {
               />
       </div>
       
-      <Button onClick={() => setOpen(true)}>Sign Up</Button>
+      {user ? (
+        <Button onClick={() => auth.signOut()}>Log Out</Button>
+      ) : (
+        <div className='app__loginContainer'>  
+          <Button onClick={() => setOpenLogIn(true)}>Login</Button>
+          <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        </div>    
+      )}
+     
+
+
       <h1>Hello clever programmers lets build an instagram clone using react</h1>
 
       {
