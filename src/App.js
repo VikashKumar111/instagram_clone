@@ -189,7 +189,18 @@ function App() {
         }
       </div>
 
-      <InstagramEmbed />
+      <InstagramEmbed
+        url='https://www.instagram.com/vikasthakur10932023/'
+        maxWidth={320}
+        hideCaption={false}
+        containerTagName='div'
+        protocol=''
+        injectScript
+        onLoading={() => {}}
+        onSuccess={() => {}}
+        onAfterRender={() => {}}
+        onFailure={() => {}}
+      />
 
       
       
