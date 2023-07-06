@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { Input } from '@mui/material';
 import ImageUpload from './ImageUpload';
+import InstagramEmbed from 'react-instagram-embed';
 
 
 const style = {
@@ -180,16 +181,17 @@ function App() {
       )}
       </div>
      
-     
-
-
-      <h1>Hello clever programmers lets build an instagram clone using react</h1>
-
-      {
+      <div className='app__posts'>
+        {
         posts.map(({id , post}) => (
           <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
         ))
-      }
+        }
+      </div>
+
+      <InstagramEmbed />
+
+      
       
       
       {user?.displayName ? (
