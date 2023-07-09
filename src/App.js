@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { Input } from '@mui/material';
 import ImageUpload from './ImageUpload';
-import InstagramEmbed from 'react-instagram-embed';
+
 
 
 const style = {
@@ -189,18 +189,7 @@ function App() {
         }
       </div>
 
-      <InstagramEmbed
-        url='https://www.instagram.com/vikasthakur10932023/'
-        maxWidth={320}
-        hideCaption={false}
-        containerTagName='div'
-        protocol=''
-        injectScript
-        onLoading={() => {}}
-        onSuccess={() => {}}
-        onAfterRender={() => {}}
-        onFailure={() => {}}
-      />
+      
 
       
       
