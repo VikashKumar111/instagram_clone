@@ -181,6 +181,13 @@ function App() {
         </div>    
       )}
       </div>
+
+      
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+          <h3>sorry you need to login to upload</h3>
+      )}
      
       <div className='app__posts'>
         {
@@ -189,6 +196,9 @@ function App() {
         ))
         }
       </div>
+      
+
+      {/* add instagram embed here  */}
 
       <InstagramEmbed
        url='https://www.instagram.com/vikasthakur10932023/'
@@ -206,11 +216,6 @@ function App() {
       
       
       
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-          <h3>sorry you need to login to upload</h3>
-      )}
 
 
     </div>
